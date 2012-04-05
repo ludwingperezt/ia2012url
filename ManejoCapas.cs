@@ -55,7 +55,7 @@ public class ManejoCapas
    
    public void SetSalidasEsperadas(List<Double> targets)
    {
-      // TODO: implement
+       this.salidaEsperada = targets; 
    }
    
    public void OrganizarCapas()
