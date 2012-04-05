@@ -22,14 +22,23 @@ public class ManejoCapas
     
 
     //metodos
-   public ManejoCapas(List<Double> entradas)
+   public ManejoCapas(List<Double> entradasn)
    {
-      // TODO: implement
+       entradas = entradasn;
    }
    
    public void agregarCapa(int nNeuronas)
    {
-      // TODO: implement
+       Capas capanueva = new Capas(); // realizo una instancia de la clase Capas.
+       Perceptron padre= new Perceptron();// se crea el perceptron padre de la lista
+       capanueva.AgregarNeurona(padre);// se agrega el padre de la lista 
+       for (int i = 0; i < nNeuronas ; i++)//agrego el resto de neuronas
+       {
+           Perceptron perc = new Perceptron();
+           capanueva.AgregarNeurona(perc);
+       }
+       this.capas.Add(capanueva);
+
    }
    
    public List<Double> entrenar()
