@@ -11,8 +11,9 @@ public class Capas
 {
     //atributos
 
-    private List<Perceptron> Neuronas; //Son todas las neuronas que pertenecen a la capa
+    public  List<Perceptron> Neuronas; //Son todas las neuronas que pertenecen a la capa
     public List<Double> Entradas; //las entradas de la capa...
+    public List<Double> Salidas; //las entradas de la capa...
 
     //metodos
    public Capas(List<Double> entradas)
@@ -39,7 +40,7 @@ public class Capas
    
    public void AgregarNeurona(Perceptron padre)
    {
-      // TODO: implement
+       Neuronas.Add(padre);
    }
    
    public int NumeroNeuronas()
