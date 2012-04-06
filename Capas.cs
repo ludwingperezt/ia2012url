@@ -12,7 +12,7 @@ public class Capas
     //atributos
 
     private List<Perceptron> Neuronas; //Son todas las neuronas que pertenecen a la capa
-    private List<Double> Entradas; //las entradas de la capa...
+    public List<Double> Entradas; //las entradas de la capa...
 
     //metodos
    public Capas(List<Double> entradas)
