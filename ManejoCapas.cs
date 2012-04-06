@@ -19,6 +19,9 @@ public class ManejoCapas
     //atributos privados
     private List<Capas> capas; //Son cada una de las capas de la Red
     private List<Double> salidaEsperada; //las salidas que se esperan...
+    //private List<Perceptron> capaAnterior; //padre, enlace a la capa anterior...
+    //private List<Perceptron> capaSiguiente; //hijos, enlace a la capa siguiente
+
     
 
     //metodos
@@ -45,13 +48,19 @@ public class ManejoCapas
            int index = this.capas.Count - 1;// esta es la capa actual la que acamos de ingresar 
            //se maneja la capa anterior a la que ingresamos por eso se le vuelve a restar 1, y asi se realiza la conexion
            this.capas[index].Entradas = this.capas[index - 1].ObtenerSalidas(this.capas[index - 1].Entradas);
+           //guardo las salidas ya que el anterior  las genera pero no las guarda en otro atributo, es algo redundante pero sirve.
+           this.capas[index].Salidas = this.capas[index].ObtenerSalidas(this.capas[index].Entradas); 
+
        }
        else
        {
-           this.capas[0].Entradas = entradas; // se concidera la capa inicial por lo que se le asignn los pesos del inicio.
+           this.capas[0].Entradas = entradas; // se concidera la capa inicial por lo que se le asignan los pesos del inicio.
        }
 
-   }
+
+            
+   }  
+
    
    public List<Double> entrenar() 
    {
@@ -59,7 +68,7 @@ public class ManejoCapas
       return null;
    }
    
-   public List<Double> evaluar()
+   public List<Double> evaluar()// este metodo para comparar las salidas de la red con las esperadas si no se inicia el entreno
    {
       // TODO: implement
       return null;
@@ -77,7 +86,7 @@ public class ManejoCapas
    
    public int ObtenerCapaDeSalida() // se devuelve el tamaño como un int pide de retorno.
    {
-       return capas.Count;
+       return capas.Count+1;
    }
 
    private List<Double> propagar()
