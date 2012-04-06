@@ -25,6 +25,7 @@ public class ManejoCapas
    public ManejoCapas(List<Double> entradasn)
    {
        entradas = entradasn;
+       Rnd = new Random(DateTime.Now.Millisecond);// int aleat3 = r.Next(-1,1);
    }
    
    public void agregarCapa(int nNeuronas)
@@ -37,11 +38,22 @@ public class ManejoCapas
            Perceptron perc = new Perceptron();
            capanueva.AgregarNeurona(perc);
        }
-       this.capas.Add(capanueva);
+       this.capas.Add(capanueva);// hasta aqui  solo se a agregado la capa nueva sin aver enlazado la salida
+       //de la anterior con  la entrada de la recien agregada
+       if (capas.Count != 1) // comparamos para ver si es la capa inicial, donde la entrada es la que le coloquemos
+       {
+           int index = this.capas.Count - 1;// esta es la capa actual la que acamos de ingresar 
+           //se maneja la capa anterior a la que ingresamos por eso se le vuelve a restar 1, y asi se realiza la conexion
+           this.capas[index].Entradas = this.capas[index - 1].ObtenerSalidas(this.capas[index - 1].Entradas);
+       }
+       else
+       {
+           this.capas[0].Entradas = entradas; // se concidera la capa inicial por lo que se le asignn los pesos del inicio.
+       }
 
    }
    
-   public List<Double> entrenar()
+   public List<Double> entrenar() 
    {
       // TODO: implement
       return null;
@@ -63,10 +75,9 @@ public class ManejoCapas
       // TODO: implement
    }
    
-   public int ObtenerCapaDeSalida()
+   public int ObtenerCapaDeSalida() // se devuelve el tamaño como un int pide de retorno.
    {
-      // TODO: implement
-      return 0;
+       return capas.Count;
    }
 
    private List<Double> propagar()
