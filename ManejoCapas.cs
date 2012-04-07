@@ -54,14 +54,21 @@ public class ManejoCapas
    
    public List<Double> entrenar() 
    {
-      // TODO: implement
-      return null;
+       Capas aux = new Capas();
+       for ( int l = capas .Count-1  ; l >= 0; l--)//ciclo que recorre todas las capas de la red de la ultima a la primera
+       {
+           aux.RetroPropagar(capas[l].Salidas);
+       }
+       for (int x = capas.Count - 1; x >= 0; x--)//ciclo que recorre todas las capas de la red de la ultima a la primera
+       {
+           capas[x].CorregirPesos();// este corrige los pesos capa por capa.
+       }
+       return propagar();
    }
    
    public List<Double> evaluar()// este metodo para comparar las salidas de la red con las esperadas si no se inicia el entreno
    {
-      // TODO: implement
-      return null;
+      return propagar();
    }
    
    public void SetSalidasEsperadas(List<Double> targets)
@@ -81,7 +88,9 @@ public class ManejoCapas
 
    private List<Double> propagar()
    {
-      // TODO: implement
+      
+
+
       return null;
    }
 
