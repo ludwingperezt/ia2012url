@@ -24,14 +24,24 @@ public class Perceptron
    public Perceptron()
    {
       // TODO: implement
+       peso = new List<double>();
+       entrada = new List<double>();
+       raiz = new List<Perceptron>();
+       hijos = new List<Perceptron>();
+       DeltaW = new List<double>();
+       ColaPesos = new Queue<double>();
    }
    
    public Double generarSalida()
    {
-      // TODO: implement
-      return null;
+       salida = 0;
+       for (int i = 0; i < peso.Count; i++)
+       {
+            salida += peso[i]*entrada[i];
+       }
+
    }
-   
+
    public void corregirPesos()
    {
       // TODO: implement
@@ -39,8 +49,7 @@ public class Perceptron
    
    public Double calcularErrores(Double SalidaEsperada)
    {
-      // TODO: implement
-      return null;
+       error = SalidaEsperada - salida;
    }
    
    public Double CalcularGradiente()
@@ -51,14 +60,12 @@ public class Perceptron
    
    public Double getError()
    {
-      // TODO: implement
-      return null;
+       return error;
    }
    
    public Double GetEntrada(int index)
    {
-      // TODO: implement
-      return null;
+       return entrada[i];
    }
    
    public void SetEntrada(Double valor)
@@ -68,63 +75,64 @@ public class Perceptron
    
    public Double GetGradiente()
    {
-      // TODO: implement
-      return null;
+       return Gradiente;
    }
    
    public Double CalcularDeltaW()
    {
-      // TODO: implement
-      return null;
+       DeltaW = ManejoCapas.constanteAprendizaje * salida * Gradiente;
+       return DeltaW;
    }
    
    public void AgregarPadre(Perceptron padre)
    {
-      // TODO: implement
+       Random rm = new Random();
+       this.raiz.Add(padre);
+       peso.Add(rm.Next());
    }
-   
    public void AgregarHijo(Perceptron hijo)
    {
-      // TODO: implement
+       hijos.Add(hijo);
    }
-   
    public void NuevoPeso()
    {
       // TODO: implement
+       Random rm = new Random();
+       peso.Add(rm.Next());
    }
-   
+   public void NuevoPeso(double nuevo)
+   {
+       peso.Add(nuevo);
+   }
    public List<Double> GetPesos()
    {
-      // TODO: implement
-      return null;
+       return peso;
    }
    
    public bool PerteneceACapaSalida()
    {
-      // TODO: implement
-      return false;
+       if (hijos.Count > 0)
+           return false;
+       return true;
    }
    
    public void ClearEntradas()
    {
-      // TODO: implement
+       entrada.Clear();
    }
    
    public Double DesencolarPeso()
    {
-      // TODO: implement
-      return null;
+       return (ColaPesos.Dequeue());
    }
    
    public List<Perceptron> GetHijos()
    {
-      // TODO: implement
-      return null;
+       return hijos;
    }
    
    public List<Perceptron> GetPadres()
    {
-      // TODO: implement
-      return null;
+       return raiz;
    }
 }
