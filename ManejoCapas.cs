@@ -57,7 +57,7 @@ public class ManejoCapas
        Capas aux = new Capas();
        for ( int l = capas .Count-1  ; l >= 0; l--)//ciclo que recorre todas las capas de la red de la ultima a la primera
        {
-           aux.RetroPropagar(capas[l].Salidas);
+           aux.RetroPropagar(salidaEsperada );
        }
        for (int x = capas.Count - 1; x >= 0; x--)//ciclo que recorre todas las capas de la red de la ultima a la primera
        {
@@ -80,10 +80,11 @@ public class ManejoCapas
    {
       // TODO: implement
    }
-   
-   public int ObtenerCapaDeSalida() // se devuelve el tamaño como un int pide de retorno.
+
+   public Capas ObtenerCapaDeSalida() // se devuelve la ultima capa
    {
-       return capas.Count+1;
+       Capas  ultima = this.capas[capas.Count - 1];// uso ultima para  especificar la capa que retorno
+       return ultima;
    }
 
    private List<Double> propagar()
