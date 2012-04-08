@@ -16,7 +16,7 @@ public class Perceptron
    private List<Perceptron> raiz; //padre, enlace a la capa anterior...
    private List<Perceptron> hijos; //hijos, enlace a la capa siguiente
    private Double error; //t-a
-   private List<Double> DeltaW; //n*e[k]
+   private Double DeltaW; //n*e[k]
    private Double Gradiente; //Se debe calcular si es capa de salida o para las capas ocultas...
    private Double Ganancia; //b
    private Queue<Double> ColaPesos; //la cola sirve cuando se hace la retropropagación, se van obteniendo los pesos en orden, si está vacía se debe llenar, con el array peso
@@ -28,7 +28,7 @@ public class Perceptron
        entrada = new List<double>();
        raiz = new List<Perceptron>();
        hijos = new List<Perceptron>();
-       DeltaW = new List<double>();
+       DeltaW =0;
        ColaPesos = new Queue<double>();
    }
    
@@ -39,7 +39,7 @@ public class Perceptron
        {
             salida += peso[i]*entrada[i];
        }
-
+       return salida;
    }
 
    public void corregirPesos()
@@ -50,6 +50,7 @@ public class Perceptron
    public Double calcularErrores(Double SalidaEsperada)
    {
        error = SalidaEsperada - salida;
+       return error;
    }
    
    public Double CalcularGradiente()
@@ -65,7 +66,7 @@ public class Perceptron
    
    public Double GetEntrada(int index)
    {
-       return entrada[i];
+       return entrada[index];
    }
    
    public void SetEntrada(Double valor)
@@ -135,4 +136,10 @@ public class Perceptron
    {
        return raiz;
    }
+
+   public void clearEntradas()
+   {
+       entrada.Clear();
+   }
+
 }

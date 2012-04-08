@@ -70,11 +70,22 @@ public class Capas
    {
       // TODO: implement
    }
-   
-   public void InicializarCapa()
+
+   //aplicable solo en la capa de entrada
+   public void inicializarCapa(List<Double> listaIngreso)
    {
-      // TODO: implement
+       // como se trata de una red arquitectura feed-forward, cada una de las salidas entran a cada una de las neuronas...
+       for (int i = 0; i < listaIngreso.Count; i++)
+       {
+           foreach (Perceptron p in Neuronas)
+               p.SetEntrada(listaIngreso[i]);
+       }
    }
 
+   public void limpiarEntradasNeuronas()
+   {
+       foreach (Perceptron p in Neuronas)
+           p.clearEntradas();
+   }
 
 }
