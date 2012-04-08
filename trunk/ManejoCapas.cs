@@ -89,10 +89,13 @@ public class ManejoCapas
 
    private List<Double> propagar()
    {
-      
-
-
-      return null;
+       List<Double> capasalida; //este me servira para guardar las salidas de la capa  en proceso
+       capasalida = null; 
+       for (int i = 0; i < capas.Count; i++)//recorro todas las capas
+       {
+          capasalida =  capas[i].ObtenerSalidas(capas[i].Entradas);// obtengo las salidas y las guardo en la lista
+       }
+       return capasalida; //al terminar las iteraciones se queda almacenada la de la ultima capa.
    }
 
 
