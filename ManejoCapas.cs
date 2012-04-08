@@ -12,7 +12,7 @@ public class ManejoCapas
 {
     //atributos estáticos y públicos
     public static Double constanteAprendizaje; //n
-    public static List<Double> entradas; //es el patrón de entrada
+    public static List<Double> entradas=new List<double>(); //es el patrón de entrada
     public static Random Rnd; //Generador de números aleatorios
     public static Double Emax; //el error cuadrático máximo tolerable...
 
@@ -25,12 +25,19 @@ public class ManejoCapas
     
 
     //metodos
+   public ManejoCapas()
+   {
+       capas = new List<Capas>();
+       salidaEsperada=new List<double>();
+       Rnd = new Random(DateTime.Now.Millisecond);// int aleat3 = r.Next(-1,1);
+   }
+
    public ManejoCapas(List<Double> entradasn)
    {
        entradas = entradasn;
        Rnd = new Random(DateTime.Now.Millisecond);// int aleat3 = r.Next(-1,1);
    }
-   
+
    public void agregarCapa(int nNeuronas)
    {
        Capas capanueva = new Capas(); // realizo una instancia de la clase Capas.
@@ -99,5 +106,11 @@ public class ManejoCapas
    }
 
 
+   public void limpiarTodasEntradasNeuronas()
+   {
+       foreach (Capas c in capas)
+           c.limpiarEntradasNeuronas();
+       capas[0].inicializarCapa(entradas);
+   }
 
 }
