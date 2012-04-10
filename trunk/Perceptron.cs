@@ -39,6 +39,12 @@ public class Perceptron
        {
             salida += peso[i]*entrada[i];
        }
+       salida = 1 / (1 + Math.Exp(-salida));
+       clearEntradas();
+       foreach (Perceptron i in hijos)
+       {
+           i.SetEntrada(salida);
+       }
        return salida;
    }
 
@@ -71,7 +77,7 @@ public class Perceptron
    
    public void SetEntrada(Double valor)
    {
-      // TODO: implement
+       this.entrada.Add(valor);
    }
    
    public Double GetGradiente()
@@ -97,7 +103,6 @@ public class Perceptron
    }
    public void NuevoPeso()
    {
-      // TODO: implement
        Random rm = new Random();
        peso.Add(rm.Next());
    }
