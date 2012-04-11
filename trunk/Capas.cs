@@ -35,7 +35,7 @@ public class Capas
    public Double CalcularErrorCuadratico(List<Double> salidasEsperadas)
    {
       // TODO: implement
-      return null;
+      return 0;
    }
    
    public void AgregarNeurona(Perceptron padre)
@@ -46,13 +46,13 @@ public class Capas
    public int NumeroNeuronas()
    {
       // TODO: implement
-      return 0;
+       return(Neuronas.Count);
    }
    
    public Perceptron GetNeurona(int index)
    {
       // TODO: implement
-      return null;
+       return (Neuronas[index]);
    }
    
    public void RetroPropagar(List<Double> salidasEsperadas)
