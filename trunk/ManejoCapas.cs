@@ -85,7 +85,52 @@ public class ManejoCapas
    
    public void OrganizarCapas()
    {
-      // TODO: implement
+       Capas nuevacapa = new Capas();//creo la primera capa;
+
+       for (int i = 1; i <= entradas.Count; i++) //ciclo para crear capa de entrada; 
+       {
+
+           Perceptron neurona = new Perceptron();//creo la neurona;    
+
+           for (int j = 1; j <= entradas.Count; j++)//genero pesos segun
+           {                                        //cantidad de entradas;
+
+               neurona.NuevoPeso();//le asigno un peso;          
+
+           }
+
+           nuevacapa.AgregarNeurona(neurona);//agrego neurona a la capa; 
+
+       }
+
+       capas.Add(nuevacapa); //agrego capa al array de capas; 
+
+
+
+
+
+       //CODIGO PENDIENTE DE QUE APRUEBE MARIO
+
+       /*
+        for (int i = 1; i <= 64; i++)
+       {
+           int cantneuronas = entradas.Count;//cantidad de neuronas que agrego en 
+                                             //cada capa oculta;
+           if (i == 64) // si ya es la capa de salida entonces que 
+           {            //agregue solo 4 neuronas; 
+               cantneuronas = 4;
+           }
+           Capas nuevacapa = new Capas();//creo la capa numero i;
+           for (int i = 1; i <= cantneuronas; i++) //ciclo para llenar capa i 
+           {                                          //con 1 neurona menos que la 
+                                                      //capa anterior;  
+               Perceptron neurona = new Perceptron();//creo la neurona;    
+               nuevacapa.AgregarNeurona(neurona);//agrego neurona a la capa; 
+           }
+           capas.Add(nuevacapa); //agrego capa al array de capas;     
+       } 
+      
+        */
    }
 
    public Capas ObtenerCapaDeSalida() // se devuelve la ultima capa
