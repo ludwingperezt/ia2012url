@@ -29,7 +29,11 @@ public class Capas
    public List<Double> ObtenerSalidas(List<Double> entradas)
    {
       // TODO: implement
-      return null;
+       List<double> datosS;
+       datosS=new List<double>();
+       for (int x=0; x<Neuronas.Count;x++)
+               datosS.Add(Neuronas[x].generarSalida());
+      return datosS;
    }
    
    public Double CalcularErrorCuadratico(List<Double> salidasEsperadas)
