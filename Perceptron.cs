@@ -50,7 +50,10 @@ public class Perceptron
 
    public void corregirPesos()
    {
-      // TODO: implement
+       this.DeltaW = CalcularDeltaW();
+       for (int e=0; e < this.peso.Count; e++) {
+           this.peso[e] = this.peso[e] + this.DeltaW;
+       }       
    }
    
    public Double calcularErrores(Double SalidaEsperada)
@@ -61,10 +64,27 @@ public class Perceptron
    
    public Double CalcularGradiente()
    {
-      // TODO: implement
-      return null;
+       Double res=0;
+       if (this.hijos.Count == 0)
+       {
+            res=this.error*this.salida*(1-this.salida);
+       }
+       else {
+           res = this.salida * (1 - this.salida)*SumCapaSiguiente();
+       }
+       return res;
    }
-   
+   private Double SumCapaSiguiente() {
+       Double res = 0;
+       for (int m = 0; m < this.hijos.Count; m++) {
+           res = res + this.hijos[m].GetGradiente() * this.hijos[m].GetPesos()[0];
+           Double temp=this.hijos[m].GetPesos()[0];
+           this.hijos[m].peso.RemoveAt(0);
+           this.hijos[m].AgregarPesoFin(temp);
+       }
+       return res;
+   }
+   public void AgregarPesoFin(Double npeso) { this.peso.Add(npeso); }
    public Double getError()
    {
        return error;
