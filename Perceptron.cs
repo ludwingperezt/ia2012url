@@ -72,6 +72,7 @@ public class Perceptron
        else {
            res = this.salida * (1 - this.salida)*SumCapaSiguiente();
        }
+       this.Gradiente = res;
        return res;
    }
    private Double SumCapaSiguiente() {
