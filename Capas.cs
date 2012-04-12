@@ -14,30 +14,30 @@ public class Capas
     public  List<Perceptron> Neuronas; //Son todas las neuronas que pertenecen a la capa
     public List<Double> Entradas; //las entradas de la capa...
     public List<Double> Salidas; //las entradas de la capa... WTF!?
-    public int tipoCapa=0; //1: capa de entrada; 2: capa oculta; 3: capa de salida
+    //public int tipoCapa=0; //1: capa de entrada; 2: capa oculta; 3: capa de salida
 
     //metodos
    public Capas(List<Double> entradas, List<Perceptron> percepIn)
    {
-       int capa1 = 0, capa2 = 0, capa3 = 0;
+       //int capa1 = 0, capa2 = 0, capa3 = 0;
        this.Neuronas = percepIn;
-       foreach (Perceptron p in this.Neuronas){
-           if (p.GetPadres().Count == 0) capa1++;
-           else
-               if (p.GetHijos().Count == 0) capa3++;
-               else
-                   capa2++;
-       }
-       if (capa1 == Neuronas.Count) tipoCapa = 1;
-       if (capa2 == Neuronas.Count) tipoCapa = 2;
-       if (capa3 == Neuronas.Count) tipoCapa = 3;
-       foreach (Double v in entradas)
-       {
-           foreach (Perceptron p in this.Neuronas)
-           {
-               p.SetEntrada(v);
-           }
-       }
+       //foreach (Perceptron p in this.Neuronas){
+       //    if (p.GetPadres().Count == 0) capa1++;
+       //    else
+       //        if (p.GetHijos().Count == 0) capa3++;
+       //        else
+       //            capa2++;
+       //}
+       //if (capa1 == Neuronas.Count) tipoCapa = 1;
+       //if (capa2 == Neuronas.Count) tipoCapa = 2;
+       //if (capa3 == Neuronas.Count) tipoCapa = 3;
+       //foreach (Double v in entradas)
+       //{
+       //    foreach (Perceptron p in this.Neuronas)
+       //    {
+       //        p.SetEntrada(v);
+       //    }
+       //}
 
       // TODO: implement
    }
@@ -48,19 +48,19 @@ public class Capas
 
    public Capas(List<Perceptron> percepIn)
    {
-       int capa1 = 0, capa2 = 0, capa3 = 0;
+       //int capa1 = 0, capa2 = 0, capa3 = 0;
        this.Neuronas = percepIn;
-       foreach (Perceptron p in this.Neuronas)
-       {
-           if (p.GetPadres().Count == 0) capa1++;
-           else
-               if (p.GetHijos().Count == 0) capa3++;
-               else
-                   capa2++;
-       }
-       if (capa1 == Neuronas.Count) tipoCapa = 1;
-       if (capa2 == Neuronas.Count) tipoCapa = 2;
-       if (capa3 == Neuronas.Count) tipoCapa = 3;
+       //foreach (Perceptron p in this.Neuronas)
+       //{
+       //    if (p.GetPadres().Count == 0) capa1++;
+       //    else
+       //        if (p.GetHijos().Count == 0) capa3++;
+       //        else
+       //            capa2++;
+       //}
+       //if (capa1 == Neuronas.Count) tipoCapa = 1;
+       //if (capa2 == Neuronas.Count) tipoCapa = 2;
+       //if (capa3 == Neuronas.Count) tipoCapa = 3;
    }
    
    public List<Double> ObtenerSalidas(List<Double> entradas)
