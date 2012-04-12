@@ -1,0 +1,40 @@
+    public Capas(List<Double> entradas)
+    {
+        this.entradas = entradas;
+        Neuronas = new List<Perceptron>(entradas.Count);
+    }
+
+    public void retroPropagar(List<Double> esperadas)
+    {
+        int i = 0;
+        foreach (Perceptron p in Neuronas)
+        {
+            if (p.perteneceACapaSalida())
+                p.calcularError(esperadas[i]);
+            p.calcularGradiente();
+            p.calcularDeltaW();
+            i = i + 1;
+        }
+    }
+
+    public Double CalcularErrorCuadratico(List<Double> salidasEsperadas)
+    {
+        // TODO: implement
+        Double acum = 0;
+        for (int i = 0; i < salidasEsperadas.Count; i++)
+        {
+            acum = acum + Math.Pow(Neuronas[i].calcularError(salidasEsperadas[i]), 2);
+        }
+        acum = acum * 0.5;
+        return acum;
+    }
+
+    public List<Double> ObtenerSalidas()
+    {
+        // TODO: implement
+        List<Double> salidas = new List<Double>();
+        for (int i = 0; i < Neuronas.Count; i++)
+            salidas.Add(Neuronas[i].generarSalida());
+        
+        return salidas;
+    }
