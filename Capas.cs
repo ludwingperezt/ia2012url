@@ -13,17 +13,54 @@ public class Capas
 
     public  List<Perceptron> Neuronas; //Son todas las neuronas que pertenecen a la capa
     public List<Double> Entradas; //las entradas de la capa...
-    public List<Double> Salidas; //las entradas de la capa...
+    public List<Double> Salidas; //las entradas de la capa... WTF!?
+    public int tipoCapa=0; //1: capa de entrada; 2: capa oculta; 3: capa de salida
 
     //metodos
-   public Capas(List<Double> entradas)
+   public Capas(List<Double> entradas, List<Perceptron> percepIn)
    {
+       int capa1 = 0, capa2 = 0, capa3 = 0;
+       this.Neuronas = percepIn;
+       foreach (Perceptron p in this.Neuronas){
+           if (p.GetPadres().Count == 0) capa1++;
+           else
+               if (p.GetHijos().Count == 0) capa3++;
+               else
+                   capa2++;
+       }
+       if (capa1 == Neuronas.Count) tipoCapa = 1;
+       if (capa2 == Neuronas.Count) tipoCapa = 2;
+       if (capa3 == Neuronas.Count) tipoCapa = 3;
+       foreach (Double v in entradas)
+       {
+           foreach (Perceptron p in this.Neuronas)
+           {
+               p.SetEntrada(v);
+           }
+       }
+
       // TODO: implement
    }
-   
+
    public Capas()
    {
-      // TODO: implement
+   }
+
+   public Capas(List<Perceptron> percepIn)
+   {
+       int capa1 = 0, capa2 = 0, capa3 = 0;
+       this.Neuronas = percepIn;
+       foreach (Perceptron p in this.Neuronas)
+       {
+           if (p.GetPadres().Count == 0) capa1++;
+           else
+               if (p.GetHijos().Count == 0) capa3++;
+               else
+                   capa2++;
+       }
+       if (capa1 == Neuronas.Count) tipoCapa = 1;
+       if (capa2 == Neuronas.Count) tipoCapa = 2;
+       if (capa3 == Neuronas.Count) tipoCapa = 3;
    }
    
    public List<Double> ObtenerSalidas(List<Double> entradas)
@@ -38,8 +75,21 @@ public class Capas
    
    public Double CalcularErrorCuadratico(List<Double> salidasEsperadas)
    {
-      // TODO: implement
-      return 0;
+       List<Double> listaErrores= new List<double>();
+       int x=0;
+       Double error = 0;
+       foreach (Perceptron p in this.Neuronas)
+       {
+           p.generarSalida();
+           listaErrores.Add(p.calcularErrores(salidasEsperadas[x]));
+           x++;
+       }
+       foreach (Double e in listaErrores)
+       {
+           error += e;
+       }
+       error += 0.5 * error;
+       return error;
    }
    
    public void AgregarNeurona(Perceptron padre)
@@ -93,8 +143,9 @@ public class Capas
    
    public Capas ObtenerCapaSalida()
    {
+        
       // TODO: implement
-      return null;
+        return null;
    }
    
    public void CorregirPesos()
