@@ -86,7 +86,7 @@ public class Capas
        }
        foreach (Double e in listaErrores)
        {
-           error += e;
+           error += e*e;
        }
        error += 0.5 * error;
        return error;
