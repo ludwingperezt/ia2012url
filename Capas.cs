@@ -112,22 +112,15 @@ public class Capas
    public void RetroPropagar(List<Double> salidasEsperadas)
    {
       // TODO: implement
-       int salida = 0;
-       bool dato;
-       List<double> errores;
-       errores = new List<double>();
-       List<double> gradientes;
-       gradientes = new List<double>();
-       List<double> deltaW;
-       deltaW = new List<double>();
-       for (int x = 0; x < Neuronas.Count; x++)
-       {
-           dato = Neuronas[x].PerteneceACapaSalida();
-           if (dato==true) //conteo neuronas si son de la capa de salida o no
-               errores.Add(Neuronas[x].calcularErrores(salidasEsperadas[x]));
-           gradientes.Add(Neuronas[x].CalcularGradiente());
-           deltaW.Add(Neuronas[x].CalcularDeltaW()); 
-       }
+       int i = 0; 
+       foreach (Perceptron p in Neuronas) {
+            if (p.PerteneceACapaSalida())
+                p.calcularErrores(salidasEsperadas[i]);
+            p.CalcularGradiente(); 
+            p.CalcularDeltaW();
+            i = i + 1;
+        }
+
    }
    
    public Capas ObtenerCapaSalida()
