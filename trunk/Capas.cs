@@ -114,31 +114,20 @@ public class Capas
       // TODO: implement
        int salida = 0;
        bool dato;
+       List<double> errores;
+       errores = new List<double>();
+       List<double> gradientes;
+       gradientes = new List<double>();
+       List<double> deltaW;
+       deltaW = new List<double>();
        for (int x = 0; x < Neuronas.Count; x++)
        {
            dato = Neuronas[x].PerteneceACapaSalida();
            if (dato==true) //conteo neuronas si son de la capa de salida o no
-           {
-               salida = salida+1;
-               x = Neuronas.Count;
-           }
-       }
-       if (salida == Neuronas.Count)
-       {
-           List<double> errores;
-           errores = new List<double>();
-           List<double> gradientes;
-           gradientes = new List<double>();
-           List<double> deltaW;
-           deltaW = new List<double>();
-           for (int x = 0; x < Neuronas.Count; x++)
-           {
                errores.Add(Neuronas[x].calcularErrores(salidasEsperadas[x]));
-               gradientes.Add(Neuronas[x].CalcularGradiente());
-               deltaW.Add(Neuronas[x].CalcularDeltaW());
-           }
+           gradientes.Add(Neuronas[x].CalcularGradiente());
+           deltaW.Add(Neuronas[x].CalcularDeltaW()); 
        }
-
    }
    
    public Capas ObtenerCapaSalida()
