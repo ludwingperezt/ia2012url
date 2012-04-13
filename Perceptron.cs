@@ -52,7 +52,7 @@ public class Perceptron
    {
        this.DeltaW = CalcularDeltaW();
        for (int e=0; e < this.peso.Count; e++) {
-           this.peso[e] = this.peso[e] + this.DeltaW;
+           this.peso[e] = this.peso[e] + this.DeltaW*entrada[e];
        }       
    }
    
@@ -108,7 +108,7 @@ public class Perceptron
    
    public Double CalcularDeltaW()
    {
-       DeltaW = ManejoCapas.constanteAprendizaje * salida * Gradiente;
+       DeltaW = ManejoCapas.constanteAprendizaje  * Gradiente;
        return DeltaW;
    }
    
