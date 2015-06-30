@@ -1,0 +1,1 @@
+Proyecto de curso Inteligencia Artificial. Universidad Rafael Landívar Campus Quetzaltenango 2012.  El proyecto consisten en crear un auto-robot que pueda conducirse sin intervención humana utilizando redes neuronales.
